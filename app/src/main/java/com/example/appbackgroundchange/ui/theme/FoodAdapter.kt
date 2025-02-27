@@ -6,12 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appbackgroundchange.R
 import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.gms.ads.nativead.NativeAdView
-import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory
 
 class FoodAdapter(private val context: Context, private val itemList: List<FoodItem>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -36,12 +34,7 @@ class FoodAdapter(private val context: Context, private val itemList: List<FoodI
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is FoodViewHolder) {
             val item = itemList[position]
-            // Apply rounded corners to the food image
-            val drawable = ContextCompat.getDrawable(context, item.imageResId)
-            if (drawable != null) {
-                holder.foodImage.setImageResource(item.imageResId)
-                // We're keeping the rounded_image.xml as the background which gives the rounded effect
-            }
+            holder.foodImage.setImageResource(item.imageResId)
             holder.foodTitle.text = item.title
             holder.foodSubtitle.text = item.subtitle
         } else if (holder is AdViewHolder) {
@@ -70,7 +63,7 @@ class FoodAdapter(private val context: Context, private val itemList: List<FoodI
 
             // Set the call to action
             adView.callToActionView = adView.findViewById(R.id.ad_call_to_action)
-            (adView.callToActionView as TextView).text = nativeAd.callToAction
+            (adView.callToActionView as TextView).text = nativeAd.callToAction ?: "INSTALL"
 
             // Set the app icon image
             adView.iconView = adIcon
