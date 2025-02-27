@@ -12,68 +12,79 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:targetApi="31">
+
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-4417207627508891~4298364939" />
+
         <activity
-            android:name=".ui.theme.MainActivity"
-            android:exported="true">
+            android:name=".ui.theme.FoodOrderActivity"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ui.theme.MainActivity"
+            android:exported="true">
+
+        </activity>
 
         <activity-alias
             android:name=".IconBlinkit"
-            android:targetActivity=".ui.theme.MainActivity"
             android:enabled="false"
+            android:exported="true"
             android:icon="@mipmap/ic_blinkit_alternate"
             android:roundIcon="@mipmap/ic_blinkit_alternate"
-            android:exported="true">
+            android:targetActivity=".ui.theme.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity-alias>
-
         <activity-alias
             android:name=".IconShopsy"
-            android:targetActivity=".ui.theme.MainActivity"
             android:enabled="false"
+            android:exported="true"
             android:icon="@mipmap/ic_shopsy_alternate"
             android:roundIcon="@mipmap/ic_shopsy_alternate"
-            android:exported="true">
+            android:targetActivity=".ui.theme.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity-alias>
-
         <activity-alias
             android:name=".IconZepto"
-            android:targetActivity=".ui.theme.MainActivity"
             android:enabled="false"
+            android:exported="true"
             android:icon="@mipmap/ic_zepto_alternate"
             android:roundIcon="@mipmap/ic_zepto_alternate"
-            android:exported="true">
+            android:targetActivity=".ui.theme.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity-alias>
-
         <activity-alias
             android:name=".IconNavi"
-            android:targetActivity=".ui.theme.MainActivity"
             android:enabled="false"
+            android:exported="true"
             android:icon="@mipmap/ic_navi_alternate"
             android:roundIcon="@mipmap/ic_navi_alternate"
-            android:exported="true">
+            android:targetActivity=".ui.theme.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity-alias>
-
     </application>
 
 </manifest>
