@@ -9,7 +9,8 @@
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:scaleType="centerCrop"
-        android:background="@drawable/rounded_image"/>
+        android:background="@drawable/rounded_image"
+        android:clipToOutline="true"/>
 
     <LinearLayout
         android:layout_width="0dp"

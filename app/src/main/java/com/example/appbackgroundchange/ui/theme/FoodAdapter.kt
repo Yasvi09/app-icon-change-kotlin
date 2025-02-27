@@ -6,10 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appbackgroundchange.R
 import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.gms.ads.nativead.NativeAdView
+import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory
 
 class FoodAdapter(private val context: Context, private val itemList: List<FoodItem>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -34,7 +36,12 @@ class FoodAdapter(private val context: Context, private val itemList: List<FoodI
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is FoodViewHolder) {
             val item = itemList[position]
-            holder.foodImage.setImageResource(item.imageResId)
+            // Apply rounded corners to the food image
+            val drawable = ContextCompat.getDrawable(context, item.imageResId)
+            if (drawable != null) {
+                holder.foodImage.setImageResource(item.imageResId)
+                // We're keeping the rounded_image.xml as the background which gives the rounded effect
+            }
             holder.foodTitle.text = item.title
             holder.foodSubtitle.text = item.subtitle
         } else if (holder is AdViewHolder) {
@@ -54,14 +61,28 @@ class FoodAdapter(private val context: Context, private val itemList: List<FoodI
 
     class AdViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val adView: NativeAdView = view.findViewById(R.id.nativeAdView)
+        private val adIcon: ImageView = view.findViewById(R.id.ad_app_icon)
 
         fun bind(nativeAd: NativeAd) {
+            // Set the headline text
             adView.headlineView = adView.findViewById(R.id.ad_headline)
             (adView.headlineView as TextView).text = nativeAd.headline
 
+            // Set the call to action
             adView.callToActionView = adView.findViewById(R.id.ad_call_to_action)
             (adView.callToActionView as TextView).text = nativeAd.callToAction
 
+            // Set the app icon image
+            adView.iconView = adIcon
+            val icon = nativeAd.icon
+            if (icon != null) {
+                adIcon.visibility = View.VISIBLE
+                adIcon.setImageDrawable(icon.drawable)
+            } else {
+                adIcon.visibility = View.GONE
+            }
+
+            // Register the native ad view
             adView.setNativeAd(nativeAd)
         }
     }
