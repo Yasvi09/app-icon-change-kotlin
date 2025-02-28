@@ -57,15 +57,13 @@ class FoodAdapter(private val context: Context, private val itemList: List<FoodI
         private val adIcon: ImageView = view.findViewById(R.id.ad_app_icon)
 
         fun bind(nativeAd: NativeAd) {
-            // Set the headline text
+
             adView.headlineView = adView.findViewById(R.id.ad_headline)
             (adView.headlineView as TextView).text = nativeAd.headline
 
-            // Set the call to action
             adView.callToActionView = adView.findViewById(R.id.ad_call_to_action)
             (adView.callToActionView as TextView).text = nativeAd.callToAction ?: "INSTALL"
 
-            // Set the app icon image
             adView.iconView = adIcon
             val icon = nativeAd.icon
             if (icon != null) {
@@ -75,7 +73,6 @@ class FoodAdapter(private val context: Context, private val itemList: List<FoodI
                 adIcon.visibility = View.GONE
             }
 
-            // Register the native ad view
             adView.setNativeAd(nativeAd)
         }
     }
